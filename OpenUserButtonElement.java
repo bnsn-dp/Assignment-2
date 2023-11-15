@@ -6,19 +6,24 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
-public class ButtonElement extends JButton implements ActionListener, MouseListener{
+public class OpenUserButtonElement extends JButton implements ActionListener, MouseListener{
+	private TextAreaElement textField;
 
-	public ButtonElement(String input){
+	public OpenUserButtonElement(){
 		addActionListener(this);
 		addMouseListener(this);
+		this.setPreferredSize(new Dimension(150, 25));
 		this.setBackground(Palette.getButton());
 		this.setBorderPainted(false);
-		this.setText(input);
+		this.setText("Open User GUI");
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==this){
+			String ID = this.textField.getText();
 			System.out.println("default button");
+			// createUser(ID);
+			// place scrollPathToVisible within createUser() or die 
 		}
 	}
 	@Override

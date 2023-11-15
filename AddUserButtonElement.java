@@ -6,19 +6,23 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
-public class ButtonElement extends JButton implements ActionListener, MouseListener{
+public class AddUserButtonElement extends JButton implements ActionListener, MouseListener{
+	private TextAreaElement textField;
 
-	public ButtonElement(String input){
+	public AddUserButtonElement(String input, TextAreaElement textField){
 		addActionListener(this);
 		addMouseListener(this);
+		this.setPreferredSize(new Dimension(150, 25));
 		this.setBackground(Palette.getButton());
 		this.setBorderPainted(false);
 		this.setText(input);
+		this.textField = textField;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==this){
-			System.out.println("default button");
+			String ID = this.textField.getText();
+			Root.getInstance().addUser(new User(ID));
 		}
 	}
 	@Override
