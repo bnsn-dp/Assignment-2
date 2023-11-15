@@ -1,7 +1,5 @@
 import java.util.HashMap;
 
-import javax.swing.tree.DefaultMutableTreeNode;
-
 public class User implements Tweeter{
 	private String username;
 	private HashMap<String, User> followers = new HashMap<String, User>();

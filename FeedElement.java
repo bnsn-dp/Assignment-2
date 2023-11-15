@@ -5,10 +5,10 @@ import javax.swing.*;
 
 public class FeedElement extends JPanel{
 	private Feed source;
-
+	DefaultListModel<String> data;
 	public FeedElement(Feed source){
 		this.source = source;
-		DefaultListModel<String> data = new DefaultListModel<String>();
+		data = new DefaultListModel<String>();
 		for(String tweet : source.getContents()){
 			data.addElement(tweet);
 		}
@@ -19,5 +19,8 @@ public class FeedElement extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(tweets, BorderLayout.SOUTH);
 	}
-
+	public void updateView(){
+		this.revalidate();
+		this.repaint();
+	}
 }

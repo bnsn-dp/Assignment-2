@@ -14,7 +14,4 @@ public class Feed {
 	public ArrayList<String> getContents(){
 		return contents;
 	}
-	public void accept(){
-
-	}
 }

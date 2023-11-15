@@ -21,4 +21,8 @@ public class FollowListElement extends JPanel{
 		this.add(tweets, BorderLayout.SOUTH);
 	}
 
+	public void updateView(){
+		this.revalidate();
+		this.repaint();
+	}
 }

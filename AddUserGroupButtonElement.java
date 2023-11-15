@@ -8,8 +8,10 @@ import javax.swing.*;
 
 public class AddUserGroupButtonElement extends JButton implements ActionListener, MouseListener{
 	private TextAreaElement textField;
+	UserGroup userbase;
 
-	public AddUserGroupButtonElement(String input, TextAreaElement textField){
+	public AddUserGroupButtonElement(String input, TextAreaElement textField, UserGroup userbase){
+		this.userbase = userbase;
 		addActionListener(this);
 		addMouseListener(this);
 		this.setPreferredSize(new Dimension(150, 25));
@@ -22,9 +24,7 @@ public class AddUserGroupButtonElement extends JButton implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==this){
 			String ID = this.textField.getText();
-			System.out.println("default button");
-			// createUser(ID);
-			// place scrollPathToVisible within createUser() or die 
+			userbase.addMember(ID);
 		}
 	}
 	@Override

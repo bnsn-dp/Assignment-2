@@ -1,9 +1,11 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-public class UserHierarchyElement extends JPanel {
+public class UserHierarchyElement extends JPanel implements TreeSelectionListener{
 	JTree test;
 	JScrollPane tree;
 	DefaultTreeModel treeModel;
@@ -29,11 +31,10 @@ public class UserHierarchyElement extends JPanel {
 		this.setPreferredSize(new Dimension(540, 400));
 		this.setLayout(new BorderLayout());
 		this.add(tree, BorderLayout.WEST);
+		test.getSelectionModel().addTreeSelectionListener(this);
 	}
 	public void addUser(User guy){
-		if(guy.getGroup() == null){
-			root.add(new DefaultMutableTreeNode(guy.getID()));
-		}
+		root.add(new DefaultMutableTreeNode(guy.getID()));
 	}
 	public void addGroup(UserGroup gang){
 		DefaultMutableTreeNode temp = new DefaultMutableTreeNode(gang.getID());
@@ -46,5 +47,11 @@ public class UserHierarchyElement extends JPanel {
 		this.revalidate();
 		this.repaint();
 		treeModel.reload();
+	}
+	@Override
+	public void valueChanged(TreeSelectionEvent e) {
+		DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) test.getLastSelectedPathComponent();
+		String ID = selectedNode.getUserObject().toString();
+		new UserGUI(ID, userbase);
 	}
 }
